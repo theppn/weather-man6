@@ -1,9 +1,7 @@
 <div class="tab-container">
-  <div class="tab-title-container" (click)="onClick()">
-    <h1>
-      {{ data.getDate() | date:'fullDate':'+0200':'fr' }}
-    </h1>
-  </div>
+  <button class="tab-title-container" (click)="onClick()">
+    {{ data.getDate() | date:'fullDate':'+0200':'fr' }}
+  </button>
   <div *ngIf="show" class="tab-info-container" #infoContainer>
     <ng-container *ngFor="let e of data.getElements()" >
       <app-element [data]="e" class="element"></app-element>

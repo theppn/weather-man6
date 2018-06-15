@@ -5,16 +5,16 @@
       {{ error }}
     </div>
     <div class="form-input">
-      Ville: <input type="text" #city><br>
+      Ville : <input type="text" #city><br>
     </div>
     <div class="form-input">
-      Pays: <input type="text" #countryCode><br>
+      Pays : <input type="text" #countryCode><br>
     </div>
     <div class="form-input">
       <input type="button" (click)="putParis()" value="Mettre Paris">
       <input type="button" (click)="onSubmit(city.value, countryCode.value)" value="Valider">
     </div>
-    <div class="lastUpdated">
+    <div *ngIf="lastUpdated" class="lastUpdated">
       Dernière requête faite le : <span>{{ lastUpdated | date:'fullDate':'+0200':'fr' }}</span>
     </div>
   </div>

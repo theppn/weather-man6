@@ -107,8 +107,11 @@ export class AppComponent extends App implements OnInit {
         this.setTabs(tabs);
       } else {
         this.error = 'Données invalides';
-        console.log('getForecast error: 40 entries expected for 5d/3h data, something is off');
+        console.log('getForecast error: 40 entries expected for 5d/3h data');
       }
+    } else {
+      this.error = 'Données invalides';
+      console.log('getForecast error: 5d/3h data in unexpected format');
     }
   }
 }
