@@ -14,7 +14,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   /**
-   * Gets forecast
+   * gets forecast
    * @param {string} city
    * @param {string} countryCode
    * @returns {Observable<Object>}

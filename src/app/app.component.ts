@@ -13,19 +13,34 @@ export class AppComponent extends App implements OnInit {
   @ViewChild('city') cityInput: ElementRef;
   @ViewChild('countryCode') countryCodeInput: ElementRef;
 
+  /**
+   * @constructor
+   * @param {ApiService} api - api service
+   */
   constructor(protected api: ApiService) {
     super();
   }
 
+  /**
+   * hooks on init
+   */
   ngOnInit() {
     this.lastUpdated = null;
   }
 
+  /**
+   * puts values to quickly test Paris
+   */
   putParis() {
     this.cityInput.nativeElement.value = 'Paris';
     this.countryCodeInput.nativeElement.value = 'fr';
   }
 
+  /**
+   * fetchs and parses weather data
+   * @param city - name of city
+   * @param cc - country code
+   */
   onSubmit(city, cc) {
     this.error = '';
     if (city !== '' && cc !== '') {
@@ -43,6 +58,10 @@ export class AppComponent extends App implements OnInit {
     }
   }
 
+  /**
+   * parses data
+   * @param {Object} data
+   */
   private parseData(data: Object) {
     if (data.hasOwnProperty('list')) {
       let list = data['list'];

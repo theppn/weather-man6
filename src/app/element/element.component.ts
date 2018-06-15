@@ -11,6 +11,10 @@ export class ElementComponent implements OnInit {
   @Input() data: Element;
   iconUrl: string;
   iconFormat: string;
+
+  /**
+   * retrieves icon url and format from environment
+   */
   constructor() {
     this.iconUrl = environment.iconUrl;
     this.iconFormat = environment.iconFormat;
