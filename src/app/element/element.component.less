@@ -1,0 +1,31 @@
+@import "../less/vars.less";
+
+div.element-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  border-color: @light-grey;
+  border-style: solid;
+  border-width: @thin;
+  border-collapse: collapse;
+  width: 319px;
+}
+
+div.element-time-container {
+  color: @medium-grey;
+}
+
+div.element-icon-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: @very-big;
+}
+
+div.element-icon-container > img {
+  width: 100px;
+}

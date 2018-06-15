@@ -16,4 +16,25 @@ export class Element {
     this.humidity = humidity;
     this.windSpeed = windSpeed;
   }
+  getDate(): number {
+    return this.date;
+  }
+  getIcon(): string {
+    return this.icon;
+  }
+  getDescription(): string {
+    return this.description;
+  }
+  getTemp(): number {
+    return this.temp;
+  }
+  getPressure(): number {
+    return this.pressure;
+  }
+  getHumidity(): number {
+    return this.humidity;
+  }
+  getWindSpeed(): number {
+    return this.windSpeed;
+  }
 }

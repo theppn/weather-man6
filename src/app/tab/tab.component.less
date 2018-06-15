@@ -1,0 +1,41 @@
+@import "../less/vars.less";
+
+div.tab-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  border-bottom-color: @light-grey;
+  border-bottom-style: solid;
+  border-bottom-width: @thin;
+  border-top-color: @light-grey;
+  border-top-style: solid;
+  border-top-width: @thin;
+  border-collapse: collapse;
+}
+
+div.tab-title-container > h1 {
+  color: @medium-grey
+}
+
+div.tab-title-container {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+div.tab-info-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.element {
+  margin-bottom: @el-spacing;
+  margin-right: @el-spacing;
+}
