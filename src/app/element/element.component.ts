@@ -18,7 +18,10 @@ export class ElementComponent implements OnInit {
   constructor() {
     this.iconUrl = environment.iconUrl;
     this.iconFormat = environment.iconFormat;
+
   }
-  ngOnInit() {}
+
+  ngOnInit() {
+  }
 
 }

@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TabComponent } from './tab.component';
+import {TabComponent} from './tab.component';
+import {ElementComponent} from '../element/element.component';
 
 describe('TabComponent', () => {
   let component: TabComponent;
@@ -8,18 +9,21 @@ describe('TabComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TabComponent ]
-    })
-    .compileComponents();
+      declarations: [TabComponent, ElementComponent]
+    });
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TabComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('hidden as default', () => {
+    expect(component.show).toBeFalsy();
+  });
+
+  it('show', () => {
+    component.onClick();
+    expect(component.show).toBeTruthy();
   });
 });

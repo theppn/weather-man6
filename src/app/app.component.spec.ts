@@ -1,11 +1,26 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed, async} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {TabComponent} from './tab/tab.component';
+import {ApiService} from './services/api.service';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import {ElementComponent} from './element/element.component';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        TabComponent,
+        ElementComponent
       ],
+      imports: [
+        BrowserModule,
+        HttpClientModule
+      ],
+      providers: [
+        ApiService
+      ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {

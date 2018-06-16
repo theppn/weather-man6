@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ElementComponent } from './element.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {Element} from '../models/element.model';
+import {ElementComponent} from './element.component';
 
 describe('ElementComponent', () => {
   let component: ElementComponent;
@@ -8,18 +8,16 @@ describe('ElementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ElementComponent ]
-    })
-    .compileComponents();
+      declarations: [ElementComponent]
+    });
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ElementComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });
