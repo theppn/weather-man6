@@ -1,4 +1,5 @@
 import { AppPage } from './app.po';
+import { $ } from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -7,8 +8,10 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display results for Paris', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    $('#test').click();
+    $('#submit').click();
+    expect($('.tab-title-container').isPresent()).toBe(true);
   });
 });

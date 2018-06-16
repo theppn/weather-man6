@@ -11,8 +11,8 @@
       Pays : <input type="text" #countryCode><br>
     </div>
     <div class="form-input">
-      <input type="button" (click)="putParis()" value="Mettre Paris">
-      <input type="button" (click)="onSubmit(city.value, countryCode.value)" value="Valider">
+      <input id="test" type="button" (click)="putParis()" value="Mettre Paris">
+      <input id="submit" type="button" (click)="onSubmit(city.value, countryCode.value)" value="Valider">
     </div>
     <div *ngIf="lastUpdated" class="lastUpdated">
       Dernière requête faite le : <span>{{ lastUpdated | date:'fullDate':'+0200':'fr' }}</span>
