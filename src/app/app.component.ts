@@ -1,31 +1,31 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {App} from './models/app.model';
-import {ApiService} from './services/api.service';
-import {Tab} from './models/tab.model';
-import {Element} from './models/element.model';
+import {Store} from '@ngrx/store';
+import {
+  REQUEST_FORECAST,
+  ADD_FORECAST
+} from './actions';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent extends App implements OnInit {
+export class AppComponent {
   @ViewChild('city') cityInput: ElementRef;
   @ViewChild('countryCode') countryCodeInput: ElementRef;
 
-  /**
-   * @constructor
-   * @param {ApiService} api - api service
-   */
-  constructor(protected api: ApiService) {
-    super();
-  }
+  constructor(protected store: Store) {}
 
-  /**
-   * hooks on init
-   */
-  ngOnInit() {
-    this.lastUpdated = null;
+  addForecast(city, countryCode) {
+    this.store.dispatch({
+      type: ADD_FORECAST,
+      payload: {
+        date: Date.now(),
+        city: city,
+        countryCode: countryCode,
+        data:
+      }
+    });
   }
 
   /**
@@ -36,12 +36,7 @@ export class AppComponent extends App implements OnInit {
     this.countryCodeInput.nativeElement.value = 'fr';
   }
 
-  /**
-   * fetchs and parses weather data
-   * @param city - name of city
-   * @param cc - country code
-   */
-  onSubmit(city, cc) {
+  /*onSubmit(city, cc) {
     this.error = '';
     if (city !== '' && cc !== '') {
       this.api.getForecast(city, cc)
@@ -56,7 +51,7 @@ export class AppComponent extends App implements OnInit {
       this.error = 'Entrées invalides';
       console.log('getForecast error: invalid values');
     }
-  }
+  }*/
 
   /**
    * parses data
