@@ -3,6 +3,7 @@ import {App} from './models/app.model';
 import {ApiService} from './services/api.service';
 import {Tab} from './models/tab.model';
 import {Element} from './models/element.model';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,7 @@ import {Element} from './models/element.model';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent extends App implements OnInit {
-  @ViewChild('city') cityInput: ElementRef;
-  @ViewChild('countryCode') countryCodeInput: ElementRef;
+  @ViewChild('weatherForm') weatherForm;
 
   /**
    * @constructor
@@ -26,36 +26,38 @@ export class AppComponent extends App implements OnInit {
    */
   ngOnInit() {
     this.lastUpdated = null;
+    this.city = '';
+    this.countryCode = 'fr';
+    this.weatherForm.statusChanges
+      .debounceTime(1000)
+      .subscribe((result) => {
+      if (result === 'VALID') {
+        this.onSubmit();
+      }
+    });
   }
 
   /**
    * puts values to quickly test Paris
    */
   putParis() {
-    this.cityInput.nativeElement.value = 'Paris';
-    this.countryCodeInput.nativeElement.value = 'fr';
+    this.city = 'Paris';
+    this.countryCode = 'fr';
   }
 
   /**
    * fetchs and parses weather data
-   * @param city - name of city
-   * @param cc - country code
    */
-  onSubmit(city, cc) {
+  onSubmit() {
     this.error = '';
-    if (city !== '' && cc !== '') {
-      this.api.getForecast(city, cc)
-        .subscribe((data: Object) => {
-          this.lastUpdated = Date.now();
-          this.parseData(data);
-        }, err => {
-          this.error = 'Erreur de requête';
-          console.log('getForecast error: ', err);
-        });
-    } else {
-      this.error = 'Entrées invalides';
-      console.log('getForecast error: invalid values');
-    }
+    this.api.getForecast(this.city, this.countryCode)
+      .subscribe((data: Object) => {
+        this.lastUpdated = Date.now();
+        this.parseData(data);
+      }, err => {
+        this.error = 'Erreur de requête';
+        console.log('getForecast error: ', err);
+      });
   }
 
   /**

@@ -1,23 +1,28 @@
 <div class="page-container">
   <h1 class="title">Weather-man6</h1>
-  <div class="form">
+  <form class="form" #weatherForm="ngForm" (valuesChange)="onSubmit()">
     <div class="form-error">
       {{ error }}
     </div>
     <div class="form-input">
-      Ville : <input type="text" #city><br>
+      Ville : <input type="text" #cityInput="ngModel" name="city" [(ngModel)]="city" required="true" autofocus=""><br>
+    </div>
+    <div class="form-error" [hidden]="cityInput.valid || cityInput.pristine">
+      Nom de ville invalide
     </div>
     <div class="form-input">
-      Pays : <input type="text" #countryCode><br>
+      Pays : <input type="text" #countryCodeInput="ngModel" name="countryCode" [(ngModel)]="countryCode" required="true"><br>
+    </div>
+    <div class="form-error" [hidden]="countryCodeInput.valid || countryCodeInput.pristine">
+      Code pays invalide (ex: "fr")
     </div>
     <div class="form-input">
       <input id="test" type="button" (click)="putParis()" value="Mettre Paris">
-      <input id="submit" type="button" (click)="onSubmit(city.value, countryCode.value)" value="Valider">
     </div>
     <div *ngIf="lastUpdated" class="lastUpdated">
       Dernière requête faite le : <span>{{ lastUpdated | date:'fullDate':'+0200':'fr' }}</span>
     </div>
-  </div>
+  </form>
   <div class="result">
     <div *ngFor="let t of tabs">
       <app-tab [data]="t"></app-tab>
