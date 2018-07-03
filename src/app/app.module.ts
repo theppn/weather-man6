@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -9,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import {FormsModule} from '@angular/forms';
 
 registerLocaleData(localeFr);
 
@@ -22,7 +22,7 @@ registerLocaleData(localeFr);
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

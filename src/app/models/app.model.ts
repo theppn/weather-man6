@@ -1,8 +1,10 @@
 import {Tab} from './tab.model';
+import {FormControl, FormGroup} from '@angular/forms';
 
 export class App {
-  city: string;
-  countryCode: string;
+  weatherForm: FormGroup;
+  city: FormControl;
+  countryCode: FormControl;
   lastUpdated: number;
   tabs: Array<Tab>;
   error: string;
@@ -12,8 +14,6 @@ export class App {
    */
   constructor() {
     this.lastUpdated = 0;
-    this.city = '';
-    this.countryCode = '';
     this.tabs = [];
     this.error = '';
   }

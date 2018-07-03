@@ -1,9 +1,10 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {App} from './models/app.model';
 import {ApiService} from './services/api.service';
 import {Tab} from './models/tab.model';
 import {Element} from './models/element.model';
 import 'rxjs/add/operator/debounceTime';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,6 @@ import 'rxjs/add/operator/debounceTime';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent extends App implements OnInit {
-  @ViewChild('weatherForm') weatherForm;
 
   /**
    * @constructor
@@ -26,8 +26,12 @@ export class AppComponent extends App implements OnInit {
    */
   ngOnInit() {
     this.lastUpdated = null;
-    this.city = '';
-    this.countryCode = 'fr';
+    this.city = new FormControl('', [Validators.required]);
+    this.countryCode = new FormControl('fr', [Validators.required]);
+    this.weatherForm = new FormGroup({
+      'city': this.city,
+      'countryCode': this.countryCode
+    });
     this.weatherForm.statusChanges
       .debounceTime(1000)
       .subscribe((result) => {
@@ -41,8 +45,8 @@ export class AppComponent extends App implements OnInit {
    * puts values to quickly test Paris
    */
   putParis() {
-    this.city = 'Paris';
-    this.countryCode = 'fr';
+    this.city.setValue('Paris');
+    this.countryCode.setValue('fr');
   }
 
   /**
@@ -50,7 +54,7 @@ export class AppComponent extends App implements OnInit {
    */
   onSubmit() {
     this.error = '';
-    this.api.getForecast(this.city, this.countryCode)
+    this.api.getForecast(this.city.value, this.countryCode.value)
       .subscribe((data: Object) => {
         this.lastUpdated = Date.now();
         this.parseData(data);

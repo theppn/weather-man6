@@ -1,19 +1,19 @@
 <div class="page-container">
   <h1 class="title">Weather-man6</h1>
-  <form class="form" #weatherForm="ngForm" (valuesChange)="onSubmit()">
+  <div class="form">
     <div class="form-error">
       {{ error }}
     </div>
     <div class="form-input">
-      Ville : <input type="text" #cityInput="ngModel" name="city" [(ngModel)]="city" required="true" autofocus=""><br>
+      Ville : <input type="text" [formControl]="city"><br>
     </div>
-    <div class="form-error" [hidden]="cityInput.valid || cityInput.pristine">
+    <div class="form-error" *ngIf="city.invalid && (city.dirty || city.touched)">
       Nom de ville invalide
     </div>
     <div class="form-input">
-      Pays : <input type="text" #countryCodeInput="ngModel" name="countryCode" [(ngModel)]="countryCode" required="true"><br>
+      Pays : <input type="text" [formControl]="countryCode"><br>
     </div>
-    <div class="form-error" [hidden]="countryCodeInput.valid || countryCodeInput.pristine">
+    <div class="form-error" *ngIf="countryCode.invalid && (countryCode.dirty || countryCode.touched)">
       Code pays invalide (ex: "fr")
     </div>
     <div class="form-input">
@@ -22,7 +22,7 @@
     <div *ngIf="lastUpdated" class="lastUpdated">
       Dernière requête faite le : <span>{{ lastUpdated | date:'fullDate':'+0200':'fr' }}</span>
     </div>
-  </form>
+  </div>
   <div class="result">
     <div *ngFor="let t of tabs">
       <app-tab [data]="t"></app-tab>
