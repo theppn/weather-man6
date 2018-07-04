@@ -5,6 +5,7 @@ import {ApiService} from './services/api.service';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {ElementComponent} from './element/element.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -16,7 +17,8 @@ describe('AppComponent', () => {
       ],
       imports: [
         BrowserModule,
-        HttpClientModule
+        HttpClientModule,
+        ReactiveFormsModule
       ],
       providers: [
         ApiService
