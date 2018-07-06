@@ -22,17 +22,12 @@ export class ApiService {
   getForecast(city: string, countryCode: string): Observable<Object> {
     // parameters as object
     const p = {
-      'q': encodeURIComponent(city) + ',' + encodeURIComponent(countryCode),
+      'q': city + ',' + countryCode,
       'units': environment.units,
       'lang': environment.lang,
       'APPID': environment.appId,
     };
-    // map into array of 'key=value' strings, then
-    // &-join all into a single string of query parameters
-    const q = Object.keys(p)
-      .map(k => k + '=' + p[k])
-      .join('&');
-    const url = environment.apiUrl + '?' + q;
-    return this.http.get(url);
+    const url = environment.apiUrl;
+    return this.http.get(url, { params: p });
   }
 }

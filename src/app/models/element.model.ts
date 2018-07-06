@@ -9,22 +9,16 @@ export class Element {
 
   /**
    * @constructor
-   * @param {number} date
-   * @param {string} icon
-   * @param {string} description
-   * @param {number} temp
-   * @param {number} pressure
-   * @param {number} humidity
-   * @param {number} windSpeed
+   * @param {any} data
    */
-  constructor(date: number, icon: string, description: string, temp: number, pressure: number, humidity: number, windSpeed: number) {
-    this.date = date;
-    this.icon = icon;
-    this.description = description;
-    this.temp = temp;
-    this.pressure = pressure;
-    this.humidity = humidity;
-    this.windSpeed = windSpeed;
+  constructor(data: any) {
+    this.date = data['dt'] * 1000;
+    this.icon = data['weather'][0]['icon'];
+    this.description = data['weather'][0]['description'];
+    this.temp = data['main']['temp'];
+    this.pressure = data['main']['pressure'];
+    this.humidity = data['main']['humidity'];
+    this.windSpeed = data['wind']['speed'];
   }
 
   /**

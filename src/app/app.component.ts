@@ -96,14 +96,7 @@ export class AppComponent extends App implements OnInit {
             currentDay = currentDay + step;
             currentTab = new Tab(currentDay);
           }
-          elements.push(new Element(el['dt'] * 1000,
-            el['weather'][0]['icon'],
-            el['weather'][0]['description'],
-            el['main']['temp'],
-            el['main']['pressure'],
-            el['main']['humidity'],
-            el['wind']['speed'])
-          );
+          elements.push(new Element(el));
           // on last element, push everything remaining
           if (i === (list.length - 1)) {
             currentTab.addElements(elements);
