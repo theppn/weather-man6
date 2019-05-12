@@ -1,15 +1,16 @@
 import {HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import 'rxjs/add/observable/of';
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/internal/Observable';
+import {of} from 'rxjs/internal/observable/of';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor() {
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.startsWith('https://api.openweathermap.org/data/2.5/forecast')) {
-      return Observable.of(new HttpResponse({
+      return of(new HttpResponse({
         status: 200,
         body: {
           'cod': '200',
@@ -698,4 +699,4 @@ export let fakeBackendProvider = {
   provide: HTTP_INTERCEPTORS,
   useClass: FakeBackendInterceptor,
   multi: true
-}
+};

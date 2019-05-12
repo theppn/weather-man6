@@ -3,8 +3,8 @@ import {App} from './models/app.model';
 import {ApiService} from './services/api.service';
 import {Tab} from './models/tab.model';
 import {Element} from './models/element.model';
-import 'rxjs/add/operator/debounceTime';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +33,7 @@ export class AppComponent extends App implements OnInit {
       'countryCode': this.countryCode
     });
     this.weatherForm.statusChanges
-      .debounceTime(1000)
+      .pipe(debounceTime(1000))
       .subscribe((result) => {
       if (result === 'VALID') {
         this.onSubmit();
