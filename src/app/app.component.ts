@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {App} from './models/app.model';
 import {ApiService} from './services/api.service';
 import {Tab} from './models/tab.model';
-import {Element} from './models/element.model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {OpenWeatherResponse, Element} from './models/element.model';
 import {debounceTime} from 'rxjs/operators';
 
 @Component({
@@ -25,13 +24,6 @@ export class AppComponent extends App implements OnInit {
    * hooks on init
    */
   ngOnInit() {
-    this.lastUpdated = null;
-    this.city = new FormControl('', [Validators.required]);
-    this.countryCode = new FormControl('fr', [Validators.required]);
-    this.weatherForm = new FormGroup({
-      'city': this.city,
-      'countryCode': this.countryCode
-    });
     this.weatherForm.statusChanges
       .pipe(debounceTime(1000))
       .subscribe((result) => {
@@ -78,7 +70,7 @@ export class AppComponent extends App implements OnInit {
         let elements: Array<Element> = [];
 
         // sorting by date just in case
-        list = list.sort((a, b) => {
+        list = list.sort((a: OpenWeatherResponse, b: OpenWeatherResponse) => {
           return a['dt'] - b['dt'];
         });
 
@@ -90,7 +82,7 @@ export class AppComponent extends App implements OnInit {
           // on next day, push elements to tab, push current tab to tabs and create new tab
           // careful, dt is in s, ms is required
           if (el['dt'] * 1000 > (currentDay + step)) {
-            currentTab.addElements(elements);
+            currentTab.elements = elements;
             tabs.push(currentTab);
             elements = [];
             currentDay = currentDay + step;
@@ -99,11 +91,11 @@ export class AppComponent extends App implements OnInit {
           elements.push(new Element(el));
           // on last element, push everything remaining
           if (i === (list.length - 1)) {
-            currentTab.addElements(elements);
+            currentTab.elements = elements;
             tabs.push(currentTab);
           }
         }
-        this.setTabs(tabs);
+        this.tabs = tabs;
       } else {
         this.error = 'Données invalides';
         console.log('getForecast error: 40 entries expected for 5d/3h data');

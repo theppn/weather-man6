@@ -1,11 +1,10 @@
 <div class="tab-container">
   <button class="tab-title-container" (click)="onClick()">
-    {{ data.getDate() | date:'fullDate':'+0200':'fr' }}
+    {{ data.date | date:'fullDate':'+0200':'fr' }}
   </button>
   <div *ngIf="show" class="tab-info-container" #infoContainer>
-    <ng-container *ngFor="let e of data.getElements()" >
+    <ng-container *ngFor="let e of data.elements" >
       <app-element [data]="e" class="element"></app-element>
     </ng-container>
   </div>
 </div>
-

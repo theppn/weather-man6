@@ -1,20 +1,19 @@
 <div class="element-container">
   <div class="element-time-container">
-    <h2>{{ data.getDate() | date:'shortTime':'+0200':'fr' }}</h2>
+    <h2>{{ data.date | date:'shortTime':'+0200':'fr' }}</h2>
   </div>
   <div class="element-icon-container">
-    <img src="{{ iconUrl }}/{{ data.getIcon() }}.{{ iconFormat}}">
-    <h3>{{ data.getTemp() }}°C</h3>
+    <img src="{{ iconUrl }}/{{ data.icon }}.{{ iconFormat}}">
+    <h3>{{ data.temp }}°C</h3>
   </div>
   <div class="element-detail-container">
     <h3></h3>
     <h3>Détails :</h3>
     <ul>
-      <li>Description : {{ data.getDescription() }}</li>
-      <li>Pression : {{ data.getPressure() }}hPa</li>
-      <li>Humidité : {{ data.getHumidity() }}%</li>
-      <li>Vent : {{ data.getWindSpeed() }}m/s</li>
+      <li>Description : {{ data.description }}</li>
+      <li>Pression : {{ data.pressure }}hPa</li>
+      <li>Humidité : {{ data.humidity }}%</li>
+      <li>Vent : {{ data.windSpeed }}m/s</li>
     </ul>
   </div>
 </div>
-

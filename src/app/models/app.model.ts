@@ -1,5 +1,5 @@
 import {Tab} from './tab.model';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 export class App {
   weatherForm: FormGroup;
@@ -16,13 +16,12 @@ export class App {
     this.lastUpdated = 0;
     this.tabs = [];
     this.error = '';
-  }
-
-  /**
-   * sets tabs value
-   * @param {Array<Tab>} t
-   */
-  setTabs(t: Array<Tab>) {
-    this.tabs = t;
+    this.lastUpdated = null;
+    this.city = new FormControl('', [Validators.required]);
+    this.countryCode = new FormControl('fr', [Validators.required]);
+    this.weatherForm = new FormGroup({
+      'city': this.city,
+      'countryCode': this.countryCode
+    });
   }
 }

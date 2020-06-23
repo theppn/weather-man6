@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Element} from '../models/element.model';
 import {environment} from '../../environments/environment';
 
@@ -7,21 +7,8 @@ import {environment} from '../../environments/environment';
   templateUrl: './element.component.html',
   styleUrls: ['./element.component.less']
 })
-export class ElementComponent implements OnInit {
+export class ElementComponent {
   @Input() data: Element;
-  iconUrl: string;
-  iconFormat: string;
-
-  /**
-   * retrieves icon url and format from environment
-   */
-  constructor() {
-    this.iconUrl = environment.iconUrl;
-    this.iconFormat = environment.iconFormat;
-
-  }
-
-  ngOnInit() {
-  }
-
+  readonly iconUrl = environment.iconUrl;
+  readonly iconFormat = environment.iconFormat;
 }

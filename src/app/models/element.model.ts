@@ -1,3 +1,25 @@
+interface WeatherData {
+  icon: string;
+  description: string;
+}
+
+interface WindData {
+  speed: number;
+}
+
+interface MainData {
+  temp: number;
+  pressure: number;
+  humidity: number;
+  wind: WindData;
+}
+
+export interface OpenWeatherResponse {
+  dt: number;
+  weather: WeatherData[];
+  main: MainData;
+}
+
 export class Element {
   date: number;
   icon: string;
@@ -11,7 +33,7 @@ export class Element {
    * @constructor
    * @param {any} data
    */
-  constructor(data: any) {
+   constructor(data: OpenWeatherResponse) {
     this.date = data['dt'] * 1000;
     this.icon = data['weather'][0]['icon'];
     this.description = data['weather'][0]['description'];
@@ -19,61 +41,5 @@ export class Element {
     this.pressure = data['main']['pressure'];
     this.humidity = data['main']['humidity'];
     this.windSpeed = data['wind']['speed'];
-  }
-
-  /**
-   * gets date
-   * @returns {number}
-   */
-  getDate(): number {
-    return this.date;
-  }
-
-  /**
-   * gets icon
-   * @returns {string}
-   */
-  getIcon(): string {
-    return this.icon;
-  }
-
-  /**
-   * gets description
-   * @returns {string}
-   */
-  getDescription(): string {
-    return this.description;
-  }
-
-  /**
-   * gets temperature
-   * @returns {number}
-   */
-  getTemp(): number {
-    return this.temp;
-  }
-
-  /**
-   * gets pressure
-   * @returns {number}
-   */
-  getPressure(): number {
-    return this.pressure;
-  }
-
-  /**
-   * gets humidity
-   * @returns {number}
-   */
-  getHumidity(): number {
-    return this.humidity;
-  }
-
-  /**
-   * gets wind speed
-   * @returns {number}
-   */
-  getWindSpeed(): number {
-    return this.windSpeed;
   }
 }
