@@ -1,10 +1,10 @@
 import {Tab} from './tab.model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 
 export class App {
-  weatherForm: FormGroup;
-  city: FormControl;
-  countryCode: FormControl;
+  weatherForm: UntypedFormGroup;
+  city: UntypedFormControl;
+  countryCode: UntypedFormControl;
   lastUpdated: number;
   tabs: Array<Tab>;
   error: string;
@@ -17,9 +17,9 @@ export class App {
     this.tabs = [];
     this.error = '';
     this.lastUpdated = null;
-    this.city = new FormControl('', [Validators.required]);
-    this.countryCode = new FormControl('fr', [Validators.required]);
-    this.weatherForm = new FormGroup({
+    this.city = new UntypedFormControl('', [Validators.required]);
+    this.countryCode = new UntypedFormControl('fr', [Validators.required]);
+    this.weatherForm = new UntypedFormGroup({
       'city': this.city,
       'countryCode': this.countryCode
     });
