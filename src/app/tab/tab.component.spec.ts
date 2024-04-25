@@ -9,7 +9,7 @@ describe('TabComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TabComponent, ElementComponent]
+      imports: [TabComponent]
     });
   }));
 

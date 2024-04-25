@@ -11,14 +11,14 @@ describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent,
-        TabComponent,
-        ElementComponent
+        AppComponent
       ],
       imports: [
         BrowserModule,
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TabComponent,
+        ElementComponent
       ],
       providers: [
         ApiService

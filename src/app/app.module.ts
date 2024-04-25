@@ -15,14 +15,14 @@ registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TabComponent,
-    ElementComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TabComponent,
+    ElementComponent
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
